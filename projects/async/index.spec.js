@@ -62,7 +62,7 @@ describe('ДЗ 6.2 - Фильтр городов', () => {
     });
 
     it('должен показываться список городов, соответствующих фильтру', (done) => {
-      filterInput.value = 'fr';
+      filterInput.value = 'f';
       filterInput.dispatchEvent(new KeyboardEvent('input'));
       setTimeout(() => {
         expect(filterResult.children.length).toBe(3);

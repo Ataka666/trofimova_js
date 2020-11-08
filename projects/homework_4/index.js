@@ -61,15 +61,14 @@ function findAllPSiblings(where) {
   return array;
 }
 
-/*Вариант 2 нерабочий. 
-Я смотрела по воркшопу, как решается данная задача, но у меня была проблема с условием, как проверить элемент на то, что он имеет тэг Р.
-Решила сделать по-другому, но не понимаю, почему здесь возвращается пустой node-list
-function findAllPSiblings(where) {
-  let coll = where.querySelectorAll("p").previousElementSibling;
-  var array = Array.prototype.slice.call(coll);
-    return array
-}
-*/
+// Вариант 2 нерабочий.
+// Я смотрела по воркшопу, как решается данная задача, но у меня была проблема с условием, как проверить элемент на то, что он имеет тэг Р.
+// Решила сделать по-другому, но не понимаю, почему здесь возвращается пустой node-list
+// function findAllPSiblings(where) {
+//   let coll = where.querySelectorAll("p").previousElementSibling;
+//   Array.prototype.slice.call(coll);
+//   return coll
+// }
 
 /*
  Задание 4:
@@ -229,7 +228,25 @@ function collectDOMStat(root) {
      nodes: [div]
    }
  */
-function observeChildNodes(where, fn) {}
+function observeChildNodes(where, fn) {
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        const obj = {};
+        obj.type = mutation.addedNodes.length ? 'insert' : 'remove';
+        obj.nodes = [
+          ...(mutation.addedNodes.length ? mutation.addedNodes : mutation.removedNodes),
+        ];
+        fn(obj);
+      }
+    });
+  });
+
+  observer.observe(where, {
+    childList: true,
+    subtree: true,
+  });
+}
 
 export {
   createDivWithText,

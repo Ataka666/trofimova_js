@@ -41,8 +41,11 @@ function loadAndSortTowns() {
     town.send();
 
     town.addEventListener('load', () => {
-      const towns = JSON.parse(town.response);
-      resolve(towns.sort((a, b) => a.name.localCompare(b.name)));
+      const towns = town.response;
+      towns.sort((a, b) => {
+        return a.name.localeCompare(b.name);
+      });
+      resolve(towns);
     });
   });
 }
