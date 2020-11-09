@@ -80,7 +80,6 @@ retryButton.addEventListener('click', () => {
 
 filterInput.addEventListener('input', function () {
   inputText(this.value);
-  console.log(this.value);
 });
 
 loadingFailedBlock.classList.add('hidden');
@@ -89,7 +88,6 @@ filterBlock.classList.add('hidden');
 async function tryToLoad() {
   try {
     towns = await loadTowns();
-    console.log(towns);
     loadingBlock.classList.add('hidden');
     filterBlock.classList.remove('hidden');
     loadingFailedBlock.classList.add('hidden');
