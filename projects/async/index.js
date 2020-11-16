@@ -43,7 +43,7 @@ const homeworkContainer = document.querySelector('#app');
 function loadTowns() {
   return loadAndSortTowns();
 }
-console.log(loadTowns());
+
 /*
  Функция должна проверять встречается ли подстрока chunk в строке full
  Проверка должна происходить без учета регистра символов
@@ -56,7 +56,7 @@ console.log(loadTowns());
    isMatching('Moscow', 'Moscov') // false
  */
 function isMatching(full, chunk) {
-  full.toLowerCase().includes(chunk.toLowerCase());
+  return full.toLowerCase().includes(chunk.toLowerCase());
 }
 
 /* Блок с надписью "Загрузка" */
@@ -80,7 +80,6 @@ retryButton.addEventListener('click', () => {
 
 filterInput.addEventListener('input', function () {
   inputText(this.value);
-  console.log(this.value);
 });
 
 loadingFailedBlock.classList.add('hidden');
@@ -89,7 +88,6 @@ filterBlock.classList.add('hidden');
 async function tryToLoad() {
   try {
     towns = await loadTowns();
-    console.log(towns);
     loadingBlock.classList.add('hidden');
     filterBlock.classList.remove('hidden');
     loadingFailedBlock.classList.add('hidden');
@@ -111,7 +109,6 @@ function inputText(inputValue) {
       fragment.append(div);
     }
   }
-
   filterResult.append(fragment);
 }
 
