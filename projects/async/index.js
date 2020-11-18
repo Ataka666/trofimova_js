@@ -43,7 +43,6 @@ const homeworkContainer = document.querySelector('#app');
 function loadTowns() {
   return loadAndSortTowns();
 }
-console.log(loadTowns());
 /*
  Функция должна проверять встречается ли подстрока chunk в строке full
  Проверка должна происходить без учета регистра символов
@@ -56,7 +55,7 @@ console.log(loadTowns());
    isMatching('Moscow', 'Moscov') // false
  */
 function isMatching(full, chunk) {
-  full.toLowerCase().includes(chunk.toLowerCase());
+  return full.toLowerCase().includes(chunk.toLowerCase());
 }
 
 /* Блок с надписью "Загрузка" */
